@@ -17,6 +17,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libgcrypt-devel
 BuildRequires:	libtool
 BuildRequires:	autoconf2.5
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
 This library is a GPL licensed extension to the GNU RTP Stack, ccrtp, that
