@@ -1,17 +1,18 @@
-%define	major 0.9
+%define	major 1
 %define libname	%mklibname zrtpcpp %{major}
+%define develname %mklibname zrtpcpp -d
 
 Summary:	A ccrtp extension for zrtp/Zfone support
 Name:		libzrtpcpp
-Version:	0.9.0
-Release:	%mkrel 3
+Version:	1.0.0
+Release:	%mkrel 1
 License:	GPL
 Group:		System/Libraries
 URL:		http://www.gnu.org/software/commoncpp/commoncpp.html
 Source0:	ftp://ftp.gnu.org/gnu/cccrtp/libzrtpcpp-%{version}.tar.gz
 Source1:	ftp://ftp.gnu.org/gnu/cccrtp/libzrtpcpp-%{version}.tar.gz.sig
-Requires:	ccrtp >= 1.5.0
-BuildRequires:	ccrtp-devel >= 1.5.0
+Requires:	ccrtp >= 1.6.0
+BuildRequires:	ccrtp-devel >= 1.6.0
 BuildRequires:	pkgconfig
 BuildRequires:	libstdc++-devel
 BuildRequires:	libgcrypt-devel
@@ -28,6 +29,7 @@ release is based on a beta draft of the zrtp spec.
 %package -n	%{libname}
 Summary:	Abstract asynchronous event notification library
 Group:          System/Libraries
+Provides:       %{name} = %{version}-%{release}
 
 %description -n	%{libname}
 This library is a GPL licensed extension to the GNU RTP Stack, ccrtp, that
@@ -35,13 +37,13 @@ offers compatibility with Phil Zimmermann's zrtp/Zfone voice encryption, and
 which can be directly embedded into telephony applications.  The current
 release is based on a beta draft of the zrtp spec.
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Static library and header files for the libzrtpcpp library
 Group:		Development/C
-Provides:	%{name}-devel = %{version}
-Requires:	%{libname} = %{version}
+Requires:       %{libname} = %{version}
+Provides:       %{name}-devel = %{version}-%{release}
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 This library is a GPL licensed extension to the GNU RTP Stack, ccrtp, that
 offers compatibility with Phil Zimmermann's zrtp/Zfone voice encryption, and
 which can be directly embedded into telephony applications.  The current
@@ -75,9 +77,10 @@ rm -rf %{buildroot}
 %files -n %{libname}
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}
+%{_libdir}/*.so.%{major}.*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %dir %{_includedir}/libzrtpcpp
 %{_includedir}/libzrtpcpp/*.h
