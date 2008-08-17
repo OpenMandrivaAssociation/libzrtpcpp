@@ -1,18 +1,18 @@
-%define	major 1
+%define	major 0
 %define libname	%mklibname zrtpcpp %{major}
 %define develname %mklibname zrtpcpp -d
 
 Summary:	A ccrtp extension for zrtp/Zfone support
 Name:		libzrtpcpp
-Version:	1.0.0
-Release:	%mkrel 3
+Version:	1.3.0
+Release:	%mkrel 1
 License:	GPL
 Group:		System/Libraries
 URL:		http://www.gnu.org/software/commoncpp/commoncpp.html
 Source0:	ftp://ftp.gnu.org/gnu/cccrtp/libzrtpcpp-%{version}.tar.gz
 Source1:	ftp://ftp.gnu.org/gnu/cccrtp/libzrtpcpp-%{version}.tar.gz.sig
-Requires:	ccrtp >= 1.6.0
-BuildRequires:	ccrtp-devel >= 1.6.0
+Requires:	ccrtp >= 1.6.1
+BuildRequires:	ccrtp-devel >= 1.6.1
 BuildRequires:	pkgconfig
 BuildRequires:	libstdc++-devel
 BuildRequires:	libgcrypt-devel
