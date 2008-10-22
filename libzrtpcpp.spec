@@ -1,12 +1,13 @@
+%define api 1.3
 %define	major 0
-%define libname	%mklibname zrtpcpp %{major}
+%define libname	%mklibname zrtpcpp %{api} %{major}
 %define develname %mklibname zrtpcpp -d
 
 Summary:	A ccrtp extension for zrtp/Zfone support
 Name:		libzrtpcpp
 Version:	1.3.0
-Release:	%mkrel 1
-License:	GPL
+Release:	%mkrel 2
+License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.gnu.org/software/commoncpp/commoncpp.html
 Source0:	ftp://ftp.gnu.org/gnu/cccrtp/libzrtpcpp-%{version}.tar.gz
@@ -16,6 +17,7 @@ BuildRequires:	ccrtp-devel >= 1.6.1
 BuildRequires:	pkgconfig
 BuildRequires:	libstdc++-devel
 BuildRequires:	libgcrypt-devel
+BuildRequires:	libCommonC++-devel
 BuildRequires:	libtool
 BuildRequires:	autoconf2.5
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
@@ -30,6 +32,7 @@ release is based on a beta draft of the zrtp spec.
 Summary:	Abstract asynchronous event notification library
 Group:          System/Libraries
 Provides:       %{name} = %{version}-%{release}
+Obsoletes:	%{mklibname zrtpcpp 0} < %{version}-%{release}
 
 %description -n	%{libname}
 This library is a GPL licensed extension to the GNU RTP Stack, ccrtp, that
@@ -42,6 +45,7 @@ Summary:	Static library and header files for the libzrtpcpp library
 Group:		Development/C
 Requires:       %{libname} = %{version}
 Provides:       %{name}-devel = %{version}-%{release}
+Obsoletes:	%{mklibname -d zrtpcpp 0.9}
 
 %description -n	%{develname}
 This library is a GPL licensed extension to the GNU RTP Stack, ccrtp, that
@@ -53,18 +57,17 @@ This package provides the header files, link libraries, and documentation for
 building applications that use libzrtpcpp.
 
 %prep
-
 %setup -q
 
 %build
+export LDFLAGS="-s"
 %configure2_5x
-
-%make LDFLAGS="-s" CXXFLAGS="%{optflags}"
+%make LIBTOOL=%_bindir/libtool
 
 %install
 rm -rf %{buildroot}
 
-%makeinstall
+%makeinstall_std
 rm -rf %{buildroot}/%{_infodir}
 
 %if %mdkversion < 200900
@@ -81,8 +84,7 @@ rm -rf %{buildroot}
 %files -n %{libname}
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
-%{_libdir}/*.so.%{major}
-%{_libdir}/*.so.%{major}.*
+%{_libdir}/*%{api}.so.%{major}*
 
 %files -n %{develname}
 %defattr(-,root,root)
