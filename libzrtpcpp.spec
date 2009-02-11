@@ -5,7 +5,7 @@
 
 Summary:	A ccrtp extension for zrtp/Zfone support
 Name:		libzrtpcpp
-Version:	1.4.2
+Version:	1.4.3
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Libraries
@@ -18,8 +18,6 @@ BuildRequires:	pkgconfig
 BuildRequires:	libstdc++-devel
 BuildRequires:	libgcrypt-devel
 BuildRequires:	libCommonC++-devel
-BuildRequires:	libtool
-BuildRequires:	autoconf2.5
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
