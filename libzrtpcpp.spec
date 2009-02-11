@@ -18,6 +18,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	libstdc++-devel
 BuildRequires:	libgcrypt-devel
 BuildRequires:	libCommonC++-devel
+BuildRequires:	libtool
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
