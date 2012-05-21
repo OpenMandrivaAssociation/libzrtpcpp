@@ -1,25 +1,22 @@
-%define api 1.4
-%define	major 0
-%define libname	%mklibname zrtpcpp %{api} %{major}
+%define	major 2
+%define libname	%mklibname zrtpcpp %{major}
 %define develname %mklibname zrtpcpp -d
 
 Summary:	A ccrtp extension for zrtp/Zfone support
 Name:		libzrtpcpp
-Version:	1.4.6
-Release:	%mkrel 3
+Version:	2.0.0
+Release:	1
 License:	GPLv2+
 Group:		System/Libraries
 URL:		http://www.gnu.org/software/commoncpp/commoncpp.html
-Source0:	ftp://ftp.gnu.org/gnu/cccrtp/libzrtpcpp-%{version}.tar.gz
-Source1:	ftp://ftp.gnu.org/gnu/cccrtp/libzrtpcpp-%{version}.tar.gz.sig
-Requires:	ccrtp >= 1.7.0
+Source0:	ftp://ftp.gnu.org/gnu/ccrtp/libzrtpcpp-%{version}.tar.gz
+Source1:	ftp://ftp.gnu.org/gnu/ccrtp/libzrtpcpp-%{version}.tar.gz.sig
+#Requires:	ccrtp >= 1.7.0
 BuildRequires:	ccrtp-devel >= 1.7.0
-BuildRequires:	pkgconfig
 BuildRequires:	libstdc++-devel
 BuildRequires:	libgcrypt-devel
 BuildRequires:	libCommonC++-devel
-BuildRequires:	libtool
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires:	cmake
 
 %description
 This library is a GPL licensed extension to the GNU RTP Stack, ccrtp, that
@@ -59,39 +56,24 @@ building applications that use libzrtpcpp.
 %setup -q
 
 %build
-export LDFLAGS="-s"
-%configure2_5x
-%make LIBTOOL=%_bindir/libtool
+%cmake
+%make
+#LIBTOOL=%_bindir/libtool
 
 %install
-rm -rf %{buildroot}
-
+pushd build
 %makeinstall_std
-rm -rf %{buildroot}/%{_infodir}
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-rm -rf %{buildroot}
+popd
+#rm -rf %{buildroot}/%{_infodir}
 
 %files -n %{libname}
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
-%{_libdir}/*%{api}.so.%{major}*
+%{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
 %defattr(-,root,root)
 %dir %{_includedir}/libzrtpcpp
 %{_includedir}/libzrtpcpp/*.h
-%{_libdir}/*.a
 %{_libdir}/*.so
-%{_libdir}/*.la
 %{_libdir}/pkgconfig/*.pc
-
-
