@@ -61,7 +61,7 @@ building applications that use libzrtpcpp.
 %{_libdir}/*.so.%{major}*
 
 %files -n %{devname}
-%doc AUTHORS COPYING README
+%doc AUTHORS COPYING
 %dir %{_includedir}/libzrtpcpp
 %{_includedir}/libzrtpcpp/*.h
 %{_libdir}/*.so
