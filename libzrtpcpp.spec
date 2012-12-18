@@ -15,7 +15,7 @@ Source1:	ftp://ftp.gnu.org/gnu/ccrtp/libzrtpcpp-%{version}.tar.gz.sig
 BuildRequires:	cmake
 BuildRequires:	stdc++-devel
 BuildRequires:	pkgconfig(libccext2)
-BuildRequires:	pkgconfig(libccrtp
+BuildRequires:	pkgconfig(libccrtp)
 BuildRequires:	pkgconfig(libgcrypt)
 
 %description
