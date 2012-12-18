@@ -55,7 +55,7 @@ building applications that use libzrtpcpp.
 %make
 
 %install
-%makeinstall_std -c build
+%makeinstall_std -C build
 
 %files -n %{libname}
 %{_libdir}/*.so.%{major}*
