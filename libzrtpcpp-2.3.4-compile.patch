@@ -1,0 +1,26 @@
+--- libzrtpcpp-2.3.4/src/CMakeLists.txt.omv~	2016-03-31 14:25:39.472158895 +0200
++++ libzrtpcpp-2.3.4/src/CMakeLists.txt	2016-03-31 14:25:55.219045116 +0200
+@@ -77,9 +77,9 @@ add_library(${zrtplib} ${LIBRARY_BUILD_T
+ set_target_properties(${zrtplib} PROPERTIES VERSION ${VERSION} SOVERSION ${SOVERSION})
+ target_link_libraries(${zrtplib} ${LIBS})
+ 
+-if(enable_ccrtp)
+-    add_dependencies(${zrtplib} ccrtp)
+-endif()
++#if(enable_ccrtp)
++#    add_dependencies(${zrtplib} ccrtp)
++#endif()
+ 
+ add_subdirectory(libzrtpcpp)
+ 
+--- libzrtpcpp-2.3.4/cmake/Modules/GeneratePackage.cmake.omv~	2016-03-31 14:28:55.033663228 +0200
++++ libzrtpcpp-2.3.4/cmake/Modules/GeneratePackage.cmake	2016-03-31 14:29:03.618593924 +0200
+@@ -53,7 +53,7 @@ MACRO(GENERATE_PACKAGING PACKAGE VERSION
+ #  SPECFILE()
+ 
+   ADD_CUSTOM_TARGET( svncheck
+-    COMMAND cd $(CMAKE_SOURCE_DIR) && LC_ALL=C git status | grep -q "nothing to commit .working directory clean."
++    COMMAND cd ${CMAKE_SOURCE_DIR} && LC_ALL=C git status | grep -q "nothing to commit .working directory clean."
+   )
+ 
+   SET( AUTOBUILD_COMMAND

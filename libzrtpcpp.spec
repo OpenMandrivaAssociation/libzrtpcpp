@@ -5,13 +5,15 @@
 Summary:	A ccrtp extension for zrtp/Zfone support
 Name:		libzrtpcpp
 Version:	2.3.4
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		System/Libraries
 Url:		http://www.gnu.org/software/commoncpp/commoncpp.html
 Source0:	ftp://ftp.gnu.org/gnu/ccrtp/libzrtpcpp-%{version}.tar.gz
 Source1:	ftp://ftp.gnu.org/gnu/ccrtp/libzrtpcpp-%{version}.tar.gz.sig
+Patch0:		libzrtpcpp-2.3.4-compile.patch
 BuildRequires:	cmake
+BuildRequires:	ninja
 BuildRequires:	stdc++-devel
 BuildRequires:	pkgconfig(libccext2)
 BuildRequires:	pkgconfig(libccrtp)
@@ -61,11 +63,12 @@ building applications that use libzrtpcpp.
 
 %prep
 %setup -q
+%apply_patches
 
 %build
-%cmake
-%make
+%cmake -G Ninja
+%ninja
 
 %install
-%makeinstall_std -C build
+%ninja_install -C build
 
