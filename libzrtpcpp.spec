@@ -63,7 +63,7 @@ building applications that use libzrtpcpp.
 
 %prep
 %setup -q
-%apply_patches
+%autopatch -p1
 
 %build
 %cmake -G Ninja
