@@ -8,7 +8,7 @@ Version:	2.3.4
 Release:	3
 License:	GPLv2+
 Group:		System/Libraries
-Url:		http://www.gnu.org/software/commoncpp/commoncpp.html
+Url:		https://www.gnu.org/software/commoncpp/commoncpp.html
 Source0:	ftp://ftp.gnu.org/gnu/ccrtp/libzrtpcpp-%{version}.tar.gz
 Source1:	ftp://ftp.gnu.org/gnu/ccrtp/libzrtpcpp-%{version}.tar.gz.sig
 Patch0:		libzrtpcpp-2.3.4-compile.patch
